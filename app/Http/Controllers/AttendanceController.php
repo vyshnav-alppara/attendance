@@ -24,25 +24,21 @@ class AttendanceController extends Controller
 
     public function search(Request $request)
     {
-
         $request->validate([
             'search_term' => 'required|string',
         ]);
 
         $searchTerm = $request->input('search_term');
 
-
-        if (filter_var($searchTerm, FILTER_VALIDATE_EMAIL)) {
-
-            $attendanceData = Attendance::whereHas('internalUser', function ($query) use ($searchTerm) {
-                $query->where('email', $searchTerm);
-            })->get();
-        } else {
-
-            $attendanceData = Attendance::whereHas('externalUser', function ($query) use ($searchTerm) {
-                $query->where('phone_2', $searchTerm);
-            })->get();
-        }
+        $attendanceData = Attendance::query()
+            ->where(function ($query) use ($searchTerm) {
+                $query->whereHas('internalUser', function ($q) use ($searchTerm) {
+                    $q->where('email', $searchTerm);
+                })->orWhereHas('externalUser', function ($q) use ($searchTerm) {
+                    $q->where('phone_2', $searchTerm);
+                });
+            })
+            ->get();
 
         return view('home.home', compact('attendanceData'));
     }
