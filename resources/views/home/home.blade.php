@@ -1,4 +1,4 @@
-@extends('layout.app') 
+@extends('layout.app')
 
 @section('title', 'Attendance Dashboard')
 
@@ -6,19 +6,24 @@
 <div class="row justify-content-center">
     <div class="col-md-8">
         <div class="card mt-5">
-            <div class="card-header">Attendance Search</div>
+            <div class="card-header bg-dark text-white">
+                <h3 class="card-title mt-3" style="font-size: 1.5rem;">Search Attendance</h3>
+            </div>
 
             <div class="card-body">
                 <form method="POST" action="{{ route('attendance.search') }}">
-                    @csrf
-                    <div class="input-group mb-3">
-                        <input type="text" class="form-control @error('search_term') is-invalid @enderror"
-                            name="search_term" placeholder="Enter email or phone number"
-                            value="{{ old('search_term') }}" required>
-                        <button class="btn btn-primary" type="submit">Search</button>
-                        @error('search_term')
-                        <span class="invalid-feedback" role="alert">{{ $message }}</span>
-                        @enderror
+
+                    <div class="d-flex justify-content-end">
+                        @csrf
+                        <div class="input-group mb-3 w-50">
+                            <input type="text" class="form-control @error('search_term') is-invalid @enderror"
+                                name="search_term" placeholder="Enter email or phone number"
+                                value="{{ old('search_term') }}" required>
+                            <button class="btn btn-dark" type="submit">Search</button>
+                            @error('search_term')
+                            <span class="invalid-feedback" role="alert">{{ $message }}</span>
+                            @enderror
+                        </div>
                     </div>
                 </form>
 

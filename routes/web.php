@@ -14,5 +14,5 @@ Route::post('/login', [LoginController::class, 'login'])->middleware('guest');
 Route::middleware('auth')->group(function () {
     Route::get('/home', [AttendanceController::class, 'index'])->name('home');
     Route::post('/attendance/search', [AttendanceController::class, 'search'])->name('attendance.search');
-    Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
+    Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 });

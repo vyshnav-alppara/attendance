@@ -6,7 +6,10 @@
 <div class="row justify-content-center">
     <div class="col-md-6">
         <div class="card mt-5">
-            <div class="card-header">Login</div>
+            <div class="card-header bg-dark text-white text-center">
+                <h3 class="card-title mt-3" style="font-size: 1.5rem;">Login</h3>
+                <p class="card-subtitle text-white mb-3">Internal And External User Attendance System</p>
+            </div>
 
             <div class="card-body">
                 @if ($errors->any())
@@ -40,8 +43,8 @@
                         @enderror
                     </div>
 
-                    <div class="form-group mb-3">
-                        <button type="submit" class="btn btn-primary w-100">Login</button>
+                    <div class="form-group mb-3 d-flex justify-content-end">
+                        <button type="submit" class="btn btn-dark w-25 mt-3">Login</button>
                     </div>
                 </form>
             </div>
