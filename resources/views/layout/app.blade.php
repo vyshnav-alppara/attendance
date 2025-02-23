@@ -5,40 +5,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title', 'Attendance App')</title>
-
-    
     @vite(['resources/css/app.css', 'resources/js/app.js'])
-
-    
-    <style>
-        body {
-            padding-top: 50px;
-        }
-    </style>
-
-   
     <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
 
-<body>
+<body class="bg-light">
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
         <div class="container">
-            <a class="navbar-brand" href="{{ url('/') }}">Attendance App</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <a class="navbar-brand" href="{{ url('/') }}">Attendance</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ml-auto">
+                <ul class="navbar-nav ms-auto">
                     @auth
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('home') }}">Search Attendance</a>
-                    </li>
-                    <li class="nav-item">
-                        <form action="{{ route('logout') }}" method="POST" style="display: inline;">
-                            @csrf
-                            <button type="submit" class="nav-link btn btn-link" style="border: none; background: none; padding: 0;">Logout</button>
-                        </form>
+                        <a class="nav-link" href="{{ route('logout') }}" ...>Logout</a>
+                        <form id="logout-form" ...> @csrf </form>
                     </li>
                     @else
                     <li class="nav-item">
@@ -50,12 +35,11 @@
         </div>
     </nav>
 
-    <div class="container">
+    <div class="container mt-5 pt-3">
         @yield('content')
     </div>
 
     @vite(['resources/js/app.js'])
-
 </body>
 
 </html>
